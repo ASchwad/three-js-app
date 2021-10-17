@@ -1,0 +1,11 @@
+Model Information:
+* title:	LP Hamtaro
+* source:	https://sketchfab.com/3d-models/lp-hamtaro-abd2edcdc67c44ebb61e1e381880b40d
+* author:	dartuchiwa (https://sketchfab.com/dartuchiwa)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "LP Hamtaro" (https://sketchfab.com/3d-models/lp-hamtaro-abd2edcdc67c44ebb61e1e381880b40d) by dartuchiwa (https://sketchfab.com/dartuchiwa) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
