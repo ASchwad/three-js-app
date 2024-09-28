@@ -1,16 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
+import React, { useEffect, useState } from 'react'
+import { Canvas } from '@react-three/fiber'
 import { Physics, usePlane, useBox } from '@react-three/cannon'
-import { Html, OrbitControls, useGLTF } from '@react-three/drei'
-import { useSpring, animated } from '@react-spring/three'
-import { useLoader } from '@react-three/fiber'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { OrbitControls } from '@react-three/drei'
+import { animated } from '@react-spring/three'
 import { Suspense } from 'react'
-import Bee from './assets/Bee'
 
 
 function Plane(props) {
-  const [ref] = usePlane(() => ({ rotation: [-Math.PI / 2, 0, 0], ...props }))
+  const [ref] = usePlane(() => ({ rotation: [-Math.PI / 2, 0, 0], userData: {name: "Plane"}, ...props }))
 
   return (
     <mesh receiveShadow ref={ref} key="ASDF">
@@ -21,54 +18,19 @@ function Plane(props) {
 }
 
 function Cube(props) {
-  const [active, setActive] = useState(false)
-  // const ref = useRef()
-  // onCollide: (data) => console.log(data)
   const [ref, api] = useBox(() => ({ mass: 1, onCollide: (e) => {
-    console.log(e)
-    api.velocity.set(0,7,0); props.userData.onClick("#" + ((1<<24)*Math.random() | 0).toString(16))
+    if(e.body.userData.name === "Plane") {
+      api.velocity.set(0,7,0); props.userData.onClick("#" + ((1<<24)*Math.random() | 0).toString(16))
+    }
   }, ...props, userData: {name: "DASDF"} }))
-
-  // const { position } = useSpring({ position: active ? [0,-10,0] : props.position })
-  // useFrame(({clock}) => {
-  //   // console.log(clock.elapsedTime)
-  //   ref.current.position.y = Math.sin(clock.getElapsedTime()) * 0.3
-  //   // ref.current.args = [Math.sin(clock.getElapsedTime()) * 0.3, Math.sin(clock.getElapsedTime()) * 0.8, Math.sin(clock.getElapsedTime()) * 0.3]
-  // })
 
   return (
     <animated.mesh onClick={() => props.userData.onClick('#fe4365')}  castShadow ref={ref}>
       <boxGeometry />
-      <meshStandardMaterial color={active? "orange":"pink"}/>
-      {/* <Html distanceFactor={10}>
-        <div class="content">
-          hello <br />
-          world: {ref.current?.userData.name}
-        </div>
-      </Html> */}
+      <meshStandardMaterial color={"orange"}/>
     </animated.mesh>
   )
 }
-
-function Suzi(props) {
-  const { nodes } = useGLTF('/suzanne-draco.glb')
-
-  return (
-    <mesh geometry={nodes.Suzanne.geometry} {...props}>
-      <meshPhysicalMaterial />
-    </mesh>
-  )
-}
-
-// const Model = () => {
-//   const gltf = useLoader(GLTFLoader, "./yoda.gltf");
-//   return (
-//     <>
-//       <primitive object={gltf.scene} scale={0.4} />
-//     </>
-//   );
-// };
-
 
 export default function BoxGame() {
   const [ready, set] = useState(false)
@@ -96,9 +58,6 @@ export default function BoxGame() {
           {/* <Model /> */}
           <Physics>
             <Plane />
-            {/* <Bee  /> */}
-            {/* <Cube position={[0.45, 7, -0.25]} />
-            <Cube position={[-0.45, 9, 0.25]} /> */}
             {ready && <Cube userData={{onClick: (value) => setbg(value)}} position={[-0.45, 10, 0.25]} />}
             {renderedItems}
           </Physics>

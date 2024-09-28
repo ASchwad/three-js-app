@@ -3,19 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@react-spring/three": "^9.3.0",
-    "@react-three/cannon": "2.5.0",
-    "@react-three/drei": "^7.13.1",
-    "@react-three/fiber": "7.0.6",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-scripts": "4.0.3",
-    "sass": "^1.43.2",
-    "three": "^0.133.1",
-    "three-stdlib": "^2.4.2"
+    "@react-spring/three": "^9.7.4",
+    "@react-three/cannon": "^6.6.0",
+    "@react-three/drei": "^9.112.0",
+    "@react-three/fiber": "^8.17.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
+    "three": "^0.168.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start --openssl-legacy-provider",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
